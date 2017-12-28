@@ -135,7 +135,7 @@ var Tooltip = function (_React$Component) {
         color: useDefaultStyles ? defaultColor : color,
         padding: padding,
         boxSizing: 'border-box',
-        zIndex: 1000,
+        zIndex: 999999,
         position: 'absolute',
         display: 'inline-block'
       });
@@ -144,7 +144,7 @@ var Tooltip = function (_React$Component) {
         position: 'absolute',
         width: '0px',
         height: '0px',
-        zIndex: 1001
+        zIndex: 999999
       });
 
       var props = {
