@@ -119,7 +119,7 @@ class Tooltip extends React.Component {
       color: useDefaultStyles ? defaultColor : color,
       padding,
       boxSizing: 'border-box',
-      zIndex: 1000,
+      zIndex: 999999,
       position: 'absolute',
       display: 'inline-block',
     };
@@ -129,7 +129,7 @@ class Tooltip extends React.Component {
       position: 'absolute',
       width: '0px',
       height: '0px',
-      zIndex: 1001,
+      zIndex: 999999,
     };
 
     const props = {
