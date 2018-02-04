@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
-const modalRoot = document.getElementById('modal-root');
+const modalRoot = typeof document != 'undefined' ? document.getElementById('modal-root') : null;
 
 class Portal extends React.Component {
   static propTypes = {
@@ -17,18 +17,25 @@ class Portal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.portalElement = document.createElement('div');
+    this.portalElement = typeof document != 'undefined' ? document.createElement('div') : null;
   }
 
   componentDidMount() {
-    modalRoot.appendChild(this.portalElement);
+    if (modalRoot) {
+      modalRoot.appendChild(this.portalElement);
+    }
   }
 
   componentWillUnmount() {
-    modalRoot.removeChild(this.portalElement);
+    if (modalRoot) {
+      modalRoot.removeChild(this.portalElement);
+    }
   }
 
   render() {
+    if (!this.portalElement) {
+      return null;
+    }
     return ReactDOM.createPortal(<div className={this.props.className}>{this.props.children}</div>, this.portalElement);
   }
 }

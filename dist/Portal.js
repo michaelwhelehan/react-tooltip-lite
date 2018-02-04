@@ -29,7 +29,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @description a portal element that puts the tooltip contents at the top of the document tree, outside the react app
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
-var modalRoot = document.getElementById('modal-root');
+var modalRoot = typeof document != 'undefined' ? document.getElementById('modal-root') : null;
 
 var Portal = function (_React$Component) {
   _inherits(Portal, _React$Component);
@@ -39,23 +39,30 @@ var Portal = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Portal.__proto__ || Object.getPrototypeOf(Portal)).call(this, props));
 
-    _this.portalElement = document.createElement('div');
+    _this.portalElement = typeof document != 'undefined' ? document.createElement('div') : null;
     return _this;
   }
 
   _createClass(Portal, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      modalRoot.appendChild(this.portalElement);
+      if (modalRoot) {
+        modalRoot.appendChild(this.portalElement);
+      }
     }
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      modalRoot.removeChild(this.portalElement);
+      if (modalRoot) {
+        modalRoot.removeChild(this.portalElement);
+      }
     }
   }, {
     key: 'render',
     value: function render() {
+      if (!this.portalElement) {
+        return null;
+      }
       return _reactDom2.default.createPortal(_react2.default.createElement(
         'div',
         { className: this.props.className },
