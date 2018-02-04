@@ -40,6 +40,9 @@ var Portal = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Portal.__proto__ || Object.getPrototypeOf(Portal)).call(this, props));
 
     _this.portalElement = typeof document != 'undefined' ? document.createElement('div') : null;
+    if (_this.portalElement) {
+      _this.portalElement.setAttribute('class', 'tooltip-hidden');
+    }
     return _this;
   }
 

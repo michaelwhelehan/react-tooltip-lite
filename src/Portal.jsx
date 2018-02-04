@@ -18,6 +18,9 @@ class Portal extends React.Component {
     super(props);
 
     this.portalElement = typeof document != 'undefined' ? document.createElement('div') : null;
+    if (this.portalElement) {
+      this.portalElement.setAttribute('class', 'tooltip-hidden'); 
+    }
   }
 
   componentDidMount() {
