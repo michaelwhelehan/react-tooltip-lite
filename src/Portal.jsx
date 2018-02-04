@@ -7,47 +7,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
-let instanceCounter = 0;
+const modalRoot = document.getElementById('modal-root');
 
 class Portal extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.portalElement = null;
+    this.portalElement = document.createElement('div');
   }
 
   componentDidMount() {
-    // generate a unique ID
-    instanceCounter += 1;
-    const portalId = `react-tooltip-lite-instace-${instanceCounter}`;
-
-    let el = document.getElementById(portalId);
-
-    // add the div to the body if not there.
-    if (!el) {
-      el = document.createElement('div');
-      el.id = portalId;
-      document.body.appendChild(el);
-    }
-
-    this.portalElement = el;
-    this.componentDidUpdate();
-  }
-
-  componentDidUpdate() {
-    ReactDOM.render(<div className={this.props.className}>{this.props.children}</div>, this.portalElement);
+    modalRoot.appendChild(this.portalElement);
   }
 
   componentWillUnmount() {
-    document.body.removeChild(this.portalElement);
+    modalRoot.removeChild(this.portalElement);
   }
 
   render() {
-    return null;
+    return ReactDOM.createPortal(<div className={this.props.className}>{this.props.children}</div>, this.portalElement);
   }
 }
 

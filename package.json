@@ -28,10 +28,10 @@
   },
   "homepage": "https://github.com/bsidelinger912/react-tooltip-lite#readme",
   "dependencies": {
-    "prop-types": "^15.5.8"
+    "prop-types": "^15.6.0"
   },
   "peerDependencies": {
-    "react": "^15.5.4"
+    "react": "^16.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
@@ -51,7 +51,7 @@
     "expect": "^1.20.2",
     "mocha": "^2.5.3",
     "react-addons-test-utils": "^15.2.1",
-    "react-dom": "^15.1.0",
+    "react-dom": "^16.2.0",
     "react-hot-loader": "*",
     "webpack": "*",
     "webpack-dev-server": "*"

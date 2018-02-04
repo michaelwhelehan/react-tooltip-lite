@@ -29,57 +29,38 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @description a portal element that puts the tooltip contents at the top of the document tree, outside the react app
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
-var instanceCounter = 0;
+var modalRoot = document.getElementById('modal-root');
 
 var Portal = function (_React$Component) {
   _inherits(Portal, _React$Component);
 
-  function Portal() {
+  function Portal(props) {
     _classCallCheck(this, Portal);
 
-    var _this = _possibleConstructorReturn(this, (Portal.__proto__ || Object.getPrototypeOf(Portal)).call(this));
+    var _this = _possibleConstructorReturn(this, (Portal.__proto__ || Object.getPrototypeOf(Portal)).call(this, props));
 
-    _this.portalElement = null;
+    _this.portalElement = document.createElement('div');
     return _this;
   }
 
   _createClass(Portal, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      // generate a unique ID
-      instanceCounter += 1;
-      var portalId = 'react-tooltip-lite-instace-' + instanceCounter;
-
-      var el = document.getElementById(portalId);
-
-      // add the div to the body if not there.
-      if (!el) {
-        el = document.createElement('div');
-        el.id = portalId;
-        document.body.appendChild(el);
-      }
-
-      this.portalElement = el;
-      this.componentDidUpdate();
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      _reactDom2.default.render(_react2.default.createElement(
-        'div',
-        { className: this.props.className },
-        this.props.children
-      ), this.portalElement);
+      modalRoot.appendChild(this.portalElement);
     }
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      document.body.removeChild(this.portalElement);
+      modalRoot.removeChild(this.portalElement);
     }
   }, {
     key: 'render',
     value: function render() {
-      return null;
+      return _reactDom2.default.createPortal(_react2.default.createElement(
+        'div',
+        { className: this.props.className },
+        this.props.children
+      ), this.portalElement);
     }
   }]);
 
